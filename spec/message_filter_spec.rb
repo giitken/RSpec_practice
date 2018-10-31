@@ -1,13 +1,7 @@
 require_relative '../lib/message_filter'
 
-describe 'MessageFilter' do
-  before do
-    @filter = MessageFilter.new('foo')
-  end
-  it {
-    expect(@filter).to be_detect('hello from foo')
-  }
-  it {
-    expect(@filter).not_to be_detect('hello, world')
-  }
+describe MessageFilter, 'with argument "foo"' do
+  subject { MessageFilter.new('foo') }
+  it { is_expected.to be_detect('hello from foo') }
+  it { is_expected.not_to be_detect('hello, world') }
 end
