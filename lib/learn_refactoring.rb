@@ -9,12 +9,14 @@ class OrdersReport
   end
 
   def total_sales_within_date_range
-    orders_within_range.map(&:amount).inject(0) do |sum, order|
-      sum + amount
-    end
+    total_sales(orders_within_range)
   end
 
   private
+
+  def total_sales(orders)
+    orders.map(&:amount).inject(0, :+)
+  end
 
   def orders_within_range
     @orders.select do |order|
